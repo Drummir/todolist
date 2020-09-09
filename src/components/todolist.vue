@@ -30,7 +30,7 @@ export default {
       .get('https://jsonplaceholder.typicode.com/users/1/todos')
       .then(response => (this.items = response.data));
 
-      this.$emit('items', items) // Данные которые будут возвращаться в родительский модуль
+      //this.$emit('items', items) // Данные которые будут возвращаться в родительский модуль
     
   },
 
