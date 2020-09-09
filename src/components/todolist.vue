@@ -26,12 +26,11 @@ export default {
   },
 
   mounted() {
-    axios
-      .get('https://jsonplaceholder.typicode.com/users/1/todos')
-      .then(response => (this.items = response.data));
-
-      //this.$emit('items', items) // Данные которые будут возвращаться в родительский модуль
-    
+    if (!this.items.length) {
+      axios
+        .get('https://jsonplaceholder.typicode.com/users/1/todos')
+        .then(response => (this.items = response.data));
+    }
   },
 
   data() {
@@ -44,9 +43,13 @@ export default {
   methods: {
     deleteTask(index) {
       this.items.splice(index, 1);
+      this.$store.commit('setItems', this.items);
     }
-  }
+  },
 
+  created() {
+    this.items = this.$store.state.items;
+  }
 };
 </script>
 

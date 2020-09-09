@@ -11,7 +11,7 @@
           <th scope="row">
             <div class="taskRow">
               <div class="task-info" :class="{completed: item.completed}">
-                <input type="checkbox" :id="`check${index}`" v-model="item.completed" />
+                <input type="checkbox" :id="`check${index}`" v-model="item.completed" @change="changeTaskState()" />
                 <label :for="`check${index}`">{{ item.title }}</label>
               </div>
               <div class="task-btn">
@@ -33,6 +33,9 @@ export default {
   methods: {
     deleteItem: function(index) {
       this.$emit("deleteTask", index)
+    },
+    changeTaskState() {
+      this.$store.commit('setItems', this.items);
     }
   }
 }

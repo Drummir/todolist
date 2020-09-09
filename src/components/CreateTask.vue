@@ -20,21 +20,24 @@ export default {
 
     data() {
       return {
-        taskMessage: ''
+        taskMessage: '',
       }
     },
 
     methods: {
-    addItem: function () {
-      if(this.taskMessage !== '') {
-        this.items.unshift({
-          title: this.taskMessage,
-          completed: false
-        });
-       this.taskMessage = '';
-      }
+     addItem: function () {
+        if(this.taskMessage !== '') {
+          this.items.unshift({
+            title: this.taskMessage,
+            completed: false
+          });
+          
+          this.$store.commit('setItems', this.items);
+          this.taskMessage = '';
+        }
+      },
     },
-  },
+
 }
 </script>
 
